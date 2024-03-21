@@ -1,0 +1,51 @@
+{
+  "name": "cinequiz",
+  "version": "0.0.1",
+  "description": "Guess game based on movies images/dialogues/sounds",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist:win": "electron-builder",
+    "dist:linux": "electron-builder build --linux"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nolan-BY/CineQuiz.git"
+  },
+  "keywords": [
+    "cinema",
+    "movie",
+    "guess"
+  ],
+  "author": "Fina, Nolan, Jérémy",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Nolan-BY/CineQuiz/issues"
+  },
+  "homepage": "https://github.com/Nolan-BY/CineQuiz#readme",
+  "dependencies": {
+    "electron": "^29.1.5",
+    "electron-builder": "^24.12.0"
+  },
+  "build": {
+    "appId": "com.FNJ.CineQuiz",
+    "mac": {
+      "category": "com.FNJ.CineQuiz"
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm"
+      ],
+      "category": "Game",
+      "icon": "/assets/images/logo.png"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "/assets/images/logo.ico"
+    },
+    "directories": {
+      "output": "dist"
+    }
+  }
+}
