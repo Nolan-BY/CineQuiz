@@ -1,19 +1,4 @@
-html {
-	scroll-behavior: smooth;
-	width: 100%;
-	height: 100%;
-	font-family: Montserrat;
-	user-select: none;
-	color: #202020;
-    box-sizing: border-box;
-}
-body {
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	height: 100%;
-    background-color: #eeeeee;
-}
+
 
 .grid-layout {
     display: grid;
@@ -26,15 +11,17 @@ body {
 
 .grid-item {
     border: 1px solid black; /* Pour visualiser les boîtes */
-    border-radius: 7%;
+    border-radius: 1rem;
     /* Styles pour les images ou le contenu ici, par exemple : */
     display: flex;
     justify-content: center; /* Centre le contenu horizontalement */
     align-items: center; /* Centre le contenu verticalement */
     position: relative; /* Pour positionnement absolu de contenu intérieur si nécessaire */
     overflow: hidden; /* Empêche le débordement de l'image de fond */
-    box-shadow: 20px 20px 20px rgba(0,0,0,0.5); /* Ombrage léger */
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.5); /* Ombrage léger */
+    transition-duration: .2s;
 }
+
 .grid-item::after {
     content: '';
     position: absolute;
@@ -52,6 +39,7 @@ body {
     height: 100%; /* Assure que l'image prend toute la hauteur de .grid-item */
     object-fit: cover; /* Couvre l'espace disponible sans perdre de proportions, si vous voulez que l'image remplisse tout l'espace */
 }
+
 .grid-item p {
     position: absolute;
     top: 0;
@@ -63,4 +51,9 @@ body {
     font-weight: bold; /* Rend le texte en gras */
     font-size: 30px; /* Ajustez selon vos besoins */
     text-shadow: 0px 1px 3px rgba(0,0,0,0.7); /* Ajoute une ombre pour améliorer la lisibilité sur des images variées */
+}
+
+.grid-item:hover {
+    transform: scale(1.02);
+    cursor: pointer;
 }

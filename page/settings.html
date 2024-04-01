@@ -28,12 +28,12 @@
                         </td>
                         <td class="no-padding">
                             <label class="radio-label">
-                                <input type="radio" name="player-mode" value="multi1" onchange="togglePlayerNumberCell(this)" required/>
+                                <input type="radio" name="player-mode" value="multi1" disabled onchange="togglePlayerNumberCell(this)" required/>
                                 <div>MultiLocal</div>
                             </label>
                         </td>
                         <td class="no-padding">
-                            <label class="radio-label" disabled>
+                            <label class="radio-label">
                                 <input type="radio" name="player-mode" value="multi2" disabled onchange="togglePlayerNumberCell(this)" required/>
                                 <div>MultiOnline</div>
                             </label>
@@ -96,8 +96,8 @@
                     <tr>
                         <td class="setting-name">Type de quiz</td>
                         <td class="no-padding select">
-                            <select id="type-select" name="type-select" required>
-                                <option value="PosterGuess">Poster Guess</option>
+                            <select id="type-select" name="type-select" onchange="modeSelect(this)" required>
+                                <option value="SceneGuess">Scene Guess</option>
                                 <option value="DialogueGuess">Dialogue Guess</option>
                                 <option value="MusicGuess">Music Guess</option>
                             </select>
@@ -107,10 +107,10 @@
             </div>
 
 
-            <div class="settings">
+            <!-- <div class="settings">
                 <p class="settings-title">Joueurs</p>
                 <table class="setting players-list" cellspacing="0" cellpadding="0">
-                    <!-- <tr>
+                     <tr>
                         <td class="no-padding player-settings">
                             <input type="text" name="player-name" placeholder="Joueur 1" maxlength="14" required/>
                         </td>
@@ -126,10 +126,10 @@
                         <td class="player-settings player-keystroke-cell">
                             Cliquez pour définir la touche
                         </td>
-                    </tr> -->
+                    </tr>
 
                 </table>
-            </div>
+            </div> -->
         </div>
 
         <input id="start-game" class="button" name="submit" type="submit" value="Démarrer">

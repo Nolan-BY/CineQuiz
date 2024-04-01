@@ -1,7 +1,11 @@
 
 
+var gameMode = JSON.parse(localStorage.getItem('gameMode'));
+
+
 // -------------------------- Settings ----------------------------- \\
 
+document.getElementById("type-select").querySelector(`option[value="${gameMode}"]`).selected = true;
 
 function togglePlayerNumberCell(radio) {
     const playersNumberCell = document.getElementById('players-number-cell');
@@ -24,6 +28,13 @@ function adjustValue(input) {
         // Ajuster la valeur à la valeur maximale
         input.value = input.max;
     }
+}
+
+
+function modeSelect(selector) {
+    gameMode = selector.selectedOptions[0].value;
+    localStorage.setItem('gameMode', JSON.stringify(gameMode));
+    console.log(gameMode);
 }
 
 
