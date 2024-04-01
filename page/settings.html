@@ -13,114 +13,128 @@
         <h1>Configuration de partie</h1>
     </div>
 
-    <div id="config-section">
-        <div class="settings">
-            <p class="settings-title">Paramètres généraux</p>
+    <form action="/elements/components/intelligence/contact-submit" method="post" class="form">
+        <div id="config-section">
+            <div class="settings">
+                <p class="settings-title">Paramètres généraux</p>
 
-            <table class="setting" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td class="no-padding">
-                        <label class="radio-label">
-                            <input type="radio" name="player-mode" value="solo" checked required/>
-                            <div>Solo</div>
-                        </label>
-                    </td>
-                    <td class="no-padding">
-                        <label class="radio-label">
-                            <input type="radio" name="player-mode" value="multi1" required/>
-                            <div>MultiLocal</div>
-                        </label>
-                    </td>
-                    <td class="no-padding">
-                        <label class="radio-label">
-                            <input type="radio" name="player-mode" value="multi2" required/>
-                            <div>MultiOnline</div>
-                        </label>
-                    </td>
-                </tr>
-                <tr id="players-number-cell">
-                    <td class="no-padding" colspan="3"><input id="players-number" type="number" min="2" max="5" placeholder="Nombre de joueurs" onchange="adjustValue(this)"></td>
-                </tr>
-            </table>
+                <table class="setting" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="no-padding">
+                            <label class="radio-label">
+                                <input type="radio" name="player-mode" value="solo" onchange="togglePlayerNumberCell(this)" checked required/>
+                                <div>Solo</div>
+                            </label>
+                        </td>
+                        <td class="no-padding">
+                            <label class="radio-label">
+                                <input type="radio" name="player-mode" value="multi1" onchange="togglePlayerNumberCell(this)" required/>
+                                <div>MultiLocal</div>
+                            </label>
+                        </td>
+                        <td class="no-padding">
+                            <label class="radio-label" disabled>
+                                <input type="radio" name="player-mode" value="multi2" disabled onchange="togglePlayerNumberCell(this)" required/>
+                                <div>MultiOnline</div>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr id="players-number-cell">
+                        <td class="no-padding" colspan="3"><input id="players-number" type="number" min="2" max="5" placeholder="Nombre de joueurs" onchange="adjustValue(this); populatePlayers(this);"></td>
+                    </tr>
+                </table>
 
-            <table class="setting" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td class="setting-name">Nombre de tours</td>
-                    <td class="no-padding number-select"><input id="turns-number" type="number" min="2" max="10" placeholder="Nombre de tours" required onchange="adjustValue(this)"></td>
-                </tr>
-            </table>
+                <table class="setting" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="setting-name">Nombre de tours</td>
+                        <td class="no-padding number-select"><input id="turns-number" type="number" min="2" max="10" placeholder="Nombre de tours" required onchange="adjustValue(this)"></td>
+                    </tr>
+                </table>
 
-            <table class="setting" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td class="setting-name">Temps par tour <p class="precisions">en secondes</p></td>
-                    <td class="no-padding number-select"><input id="turns-time" type="number" min="60" max="180" placeholder="Temps par tour" required onchange="adjustValue(this)"></td>
-                </tr>
-            </table>
+                <table class="setting" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="setting-name">Temps par tour <p class="precisions">en secondes</p></td>
+                        <td class="no-padding number-select"><input id="turns-time" type="number" min="60" max="180" placeholder="Temps par tour" required onchange="adjustValue(this)"></td>
+                    </tr>
+                </table>
 
-            <table class="setting" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td class="setting-name">Pénalités</td>
-                    <td class="no-padding radio-select">
-                        <label class="radio-label">
-                            <input type="radio" name="penalties-check" value="true" checked="checked" required/>
-                            <div>Avec</div>
-                        </label>
-                    </td>
-                    <td class="no-padding radio-select">
-                        <label class="radio-label">
-                            <input type="radio" name="penalties-check" value="false" required/>
-                            <div>Sans</div>
-                        </label>
-                    </td>
-                </tr>
-            </table>
+                <table class="setting" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="setting-name">Pénalités</td>
+                        <td class="no-padding radio-select">
+                            <label class="radio-label">
+                                <input type="radio" name="penalties-check" value="true" checked="checked" required/>
+                                <div>Avec</div>
+                            </label>
+                        </td>
+                        <td class="no-padding radio-select">
+                            <label class="radio-label">
+                                <input type="radio" name="penalties-check" value="false" required/>
+                                <div>Sans</div>
+                            </label>
+                        </td>
+                    </tr>
+                </table>
 
-            <table class="setting" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td class="setting-name">Genre</td>
-                    <td class="no-padding select">
-                        <select id="genre-select" name="genre-select" required>
-                    </td>
-                </tr>
-            </table>
+                <table class="setting" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="setting-name">Genre</td>
+                        <td class="no-padding select">
+                            <select id="genre-select" name="genre-select" required>
+                                <option value="" selected>- Choisir un genre -</option>
+                                <option value=""></option>
+                                <option value=""></option>
+                                <option value=""></option>
+                                <option value=""></option>
+                                <option value=""></option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
 
-            <table class="setting" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td class="setting-name">Type de quiz</td>
-                    <td class="no-padding select">
-                        <select id="type-select" name="type-select" required>
-                    </td>
-                </tr>
-            </table>
+                <table class="setting" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="setting-name">Type de quiz</td>
+                        <td class="no-padding select">
+                            <select id="type-select" name="type-select" required>
+                                <option value="PosterGuess">Poster Guess</option>
+                                <option value="DialogueGuess">Dialogue Guess</option>
+                                <option value="MusicGuess">Music Guess</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="settings">
+                <p class="settings-title">Joueurs</p>
+                <table class="setting players-list" cellspacing="0" cellpadding="0">
+                    <!-- <tr>
+                        <td class="no-padding player-settings">
+                            <input type="text" name="player-name" placeholder="Joueur 1" maxlength="14" required/>
+                        </td>
+                        <td class="player-settings player-keystroke-cell">
+                            Cliquez pour définir la touche
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="no-padding player-settings">
+                            <input type="text" name="player-name" placeholder="Joueur 2" maxlength="14" required/>
+                        </td>
+                        <td class="player-settings player-keystroke-cell">
+                            Cliquez pour définir la touche
+                        </td>
+                    </tr> -->
+
+                </table>
+            </div>
         </div>
 
-
-        <div class="settings">
-            <p class="settings-title">Joueurs</p>
-            <table class="setting players-list" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td class="no-padding" class="player-settings">
-                        <input type="text" name="player-name" placeholder="Joueur 1" maxlength="14" required/>
-                    </td>
-                    <td class="player-settings player-keystroke-cell">
-                        Cliquez pour définir la touche
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="no-padding" class="player-settings">
-                        <input type="text" name="player-name" placeholder="Joueur 2" maxlength="14" required/>
-                    </td>
-                    <td class="player-settings player-keystroke-cell">
-                        Cliquez pour définir la touche
-                    </td>
-                </tr>
-
-            </table>
-        </div>
-
-
-    </div>
+        <input id="start-game" class="button" name="submit" type="submit" value="Démarrer">
+            
+    </form>
 
     <footer>
         <p id="update-message"></p>

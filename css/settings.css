@@ -56,7 +56,8 @@ table {
     padding: 0 !important;
 }
 
-input:focus {
+input:focus,
+select:focus {
     outline: none;
 }
 
@@ -123,6 +124,12 @@ input[name="player-name"] {
     font-weight: 700;
 }
 
+.radio-label > input:disabled + div {
+    background-color: #f0f0f0; /* Couleur de fond lorsque désactivé */
+    color: #999; /* Couleur de texte lorsque désactivé */
+    cursor: not-allowed; /* Curseur non autorisé */
+}
+
 .player-settings {
     width: 20rem;
 }
@@ -130,5 +137,45 @@ input[name="player-name"] {
 
 .error {
     color: red;
+    font-weight: 600;
+}
+
+
+.button {
+    border-radius: 0.5rem;
+    box-shadow: 0.5rem 0.3rem 0.8rem -0.4rem rgb(128, 128, 128);
+    padding: 1rem;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition-duration: .2s;
+    height: fit-content;
+    min-width: 10rem;
+    text-align: center;
+    border: none;
+}
+
+.button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+#start-game {
+    justify-self: center;
+    margin-top: 2rem;
+    background-color: #29b34b;
+}
+
+#players-number-cell {
+    display: none;
+}
+
+select {
+    font-size: 1.1rem;
     font-weight: 500;
+
+}
+
+form {
+    display: grid;
 }

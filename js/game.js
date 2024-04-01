@@ -1,4 +1,18 @@
 
+
+// -------------------------- Settings ----------------------------- \\
+
+
+function togglePlayerNumberCell(radio) {
+    const playersNumberCell = document.getElementById('players-number-cell');
+    if (radio.value === 'solo') {
+        playersNumberCell.style.display = 'none'; // Cacher l'option
+    } else {
+        playersNumberCell.style.display = 'table-row'; // Afficher l'option
+    }
+}
+
+
 function adjustValue(input) {
     // Vérifier si la valeur saisie est inférieure à la valeur minimale
     if (parseInt(input.value) < parseInt(input.min)) {
@@ -13,7 +27,32 @@ function adjustValue(input) {
 }
 
 
+function populatePlayers(numSelector) {
+    const numPlayers = numSelector.value;
+    for (let numPlayer = 1; numPlayer < numPlayers; numPlayer++) {
+        const playerSettings = document.createElement("tr");
+        const playerSettingsKey = document.createElement("td");
 
+        const playerSettingsName = document.createElement("td");
+        const playerSettingsName_Input = document.createElement("input");
+        playerSettingsName.classList.add("no-padding");
+        playerSettingsName_Input.type = "text";
+        playerSettingsName_Input.name = "player-name";
+        playerSettingsName_Input.placeholder = "Joueur " + (numPlayer+1);
+        playerSettingsName_Input.maxlength = "14"
+        playerSettingsName_Input.required = true;
+
+        playerSettingsName.appendChild(playerSettingsName_Input);
+
+        playerSettingsKey.classList.add("player-settings", "player-keystroke-cell");
+        playerSettingsKey.innerHTML = "Cliquez pour définir la touche";
+
+        playerSettings.appendChild(playerSettingsName);
+        playerSettings.appendChild(playerSettingsKey);
+
+        document.getElementsByClassName("players-list")[0].appendChild(playerSettings);
+    }
+}
 
 document.addEventListener("DOMContentLoaded", function() {
     let keystrokes = {}; // Touches associées à chaque joueur
@@ -89,6 +128,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // Afficher message d'erreur
     function showErrorMessage(element, message) {
         element.textContent = message;
+        const playerKeystrokeInput = element.children;
+        playerKeystrokeInput.value = null;
         element.classList.add("error");
         setTimeout(() => {
             element.classList.remove("error");
