@@ -17,7 +17,7 @@
     "movie",
     "guess"
   ],
-  "author": "Fina, Nolan, Jérémy",
+  "author": "TwinCells Studio",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/Nolan-BY/CineQuiz/issues"
@@ -28,9 +28,9 @@
     "electron-builder": "^24.12.0"
   },
   "build": {
-    "appId": "com.FNJ.CineQuiz",
+    "appId": "com.TwinCells.CineQuiz",
     "mac": {
-      "category": "com.FNJ.CineQuiz"
+      "category": "com.TwinCells.CineQuiz"
     },
     "linux": {
       "target": [
