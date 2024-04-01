@@ -1,0 +1,66 @@
+html {
+	scroll-behavior: smooth;
+	width: 100%;
+	height: 100%;
+	font-family: Montserrat;
+	user-select: none;
+	color: #202020;
+    box-sizing: border-box;
+}
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+    background-color: #eeeeee;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Crée trois colonnes de taille égale */
+    gap: 30px; /* Définit l'espace entre les colonnes et les lignes */
+    padding: 0 15%; /* Ajoute un peu d'espace aux côtés du conteneur grid pour l'éloigner des bords */
+    margin: auto;
+    max-width: 1200px; /* Ajustez selon la largeur maximale désirée pour votre layout */
+}
+
+.grid-item {
+    border: 1px solid black; /* Pour visualiser les boîtes */
+    border-radius: 7%;
+    /* Styles pour les images ou le contenu ici, par exemple : */
+    display: flex;
+    justify-content: center; /* Centre le contenu horizontalement */
+    align-items: center; /* Centre le contenu verticalement */
+    position: relative; /* Pour positionnement absolu de contenu intérieur si nécessaire */
+    overflow: hidden; /* Empêche le débordement de l'image de fond */
+    box-shadow: 20px 20px 20px rgba(0,0,0,0.5); /* Ombrage léger */
+}
+.grid-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 7%; /* Assure que le dégradé respecte la forme arrondie */
+    background: radial-gradient(circle, transparent 50%, black 100%);
+    pointer-events: none; /* Empêche l'élément de capter des événements de souris */
+}
+
+.grid-item img {
+    width: 100%; /* Assure que l'image prend toute la largeur de .grid-item */
+    height: 100%; /* Assure que l'image prend toute la hauteur de .grid-item */
+    object-fit: cover; /* Couvre l'espace disponible sans perdre de proportions, si vous voulez que l'image remplisse tout l'espace */
+}
+.grid-item p {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px; /* Ajoute un peu d'espace autour du texte depuis le coin supérieur gauche */
+    color: white; /* Changez la couleur du texte selon le besoin pour le contraste */
+    z-index: 2; /* Assure que le texte reste au-dessus de l'image */
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; /* Alternatives pour un style proche de San Francisco */
+    font-weight: bold; /* Rend le texte en gras */
+    font-size: 30px; /* Ajustez selon vos besoins */
+    text-shadow: 0px 1px 3px rgba(0,0,0,0.7); /* Ajoute une ombre pour améliorer la lisibilité sur des images variées */
+}

@@ -20,6 +20,8 @@ body {
 	height: 100%;
 	display: grid;
 	grid-auto-flow: row;
+    gap: 5px; /* Ajustez cette valeur selon l'espacement désiré entre les éléments */
+
 }
 
 *, *:visited, *:hover, *:focus, *:active {
@@ -64,5 +66,19 @@ footer {
     justify-items: center;
     text-align: center;
     height: fit-content;
-    margin-top: 2rem;
+    width: 100%;
+    margin: auto; /* Ajoute du centrage horizontal si nécessaire */
+
+
+}
+#title h1 {
+    font-size: 3rem; /* Augmente la taille du titre */
+    font-weight: bold; /* Rend le titre en gras */
+    margin: 0 0 1rem 0; /* Ajuste l'espacement autour du titre si nécessaire */
+}
+
+#title p {
+    font-size: 1.5rem; /* Augmente la taille du paragraphe */
+    font-weight: bold; /* Rend le paragraphe en gras */
+    margin: 0 0 1rem 0; /* Ajuste l'espacement autour du paragraphe si nécessaire */
 }

@@ -4,35 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='./assets/lineawsome-1.3.0/css/line-awesome.min.css'>
-    <link rel='stylesheet' href='./css/main.css'>
+    <link rel='stylesheet' href='../css/solo.css'>
+    <link rel='stylesheet' href='../css/main.css'>
     <title>CineQuiz</title>
-    <link rel="stylesheet" href="css\index.css">
 </head>
 <body>
+
     <!-- Titre de la page (1er bandeau) -->
     <div id="title">
-        <h1>Bienvenue sur CineQuiz !</h1>
-        <p>Le jeu de test de connaissances cinématographiques</p>
-    </div>
-
-    <!-- 3 Box Layout (2nd bandeau)-->
-
-    <div class="grid-layout">
-        <div class="grid-item">
-            <p>Scene Guess</p>
-            <img src="assets/images/forest_gump.jpg" alt="Scene Guess">
-        </div>
-        <div class="grid-item">
-            <p>Dialogue Guess</p>
-            <img src="assets/images/TAXI_driver.jpg" alt="Dialogue Guess">
-        </div>
-        <div class="grid-item">
-            <p>Music Guess</p>
-            <img src="assets/images/beatles.jpg" alt="Music Guess">
-        </div>
+        <h1>Pixel Guess : [MODE]</h1>
     </div>
     
-    
+    <!-- MILIEU DE PAGE -->
+    <div class="container">
+        <!-- Points et temps -->
+        <div class="text-row">
+            <span class="points">Points: [VAR]</span>
+            <span class="time">Temps: 0:00</span>
+        </div>
+        <!-- Image pixelisée -->
+        <div class="image-row">
+            <img src="../assets/images/forest_gump.jpg" alt="Image descriptive">
+        </div>
+        <!-- Réponse -->
+        <div class="input-row">
+            <input type="text" placeholder="Votre texte ici">
+            <button>Valider</button>
+        </div>
+    </div>
+
     <!-- PIED DE PAGE -->
     <footer>
         <p id="update-message"></p>

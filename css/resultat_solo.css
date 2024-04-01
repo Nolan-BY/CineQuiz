@@ -1,0 +1,41 @@
+.container {
+    text-align: center;
+}
+
+.score-board {
+    margin-bottom: 20px;
+}
+
+.progress-container-vertical {
+    width: 100px; /* Largeur de la barre de progression */
+    height: 300px; /* Hauteur de la barre de progression */
+    background-color: #e0e0e0;
+    border-radius: 25px;
+    margin: 20px auto;
+    position: relative;
+    display: flex;
+    align-items: flex-end; /* Aligner la barre de progression vers le bas */
+}
+
+.progress-bar-vertical {
+    background-color: #4CAF50;
+    width: 100%; /* Prend toute la largeur du conteneur */
+    height: 0%; /* Valeur initiale - sera ajustée par JS */
+    border-radius: 25px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#player-name {
+    color: white;
+    transform: rotate(-90deg); /* Rotation du texte pour l'alignement vertical */
+    transform-origin: center;
+}
+
+.buttons button {
+    margin: 0 10px;
+    padding: 10px 20px;
+}
+

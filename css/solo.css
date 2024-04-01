@@ -1,0 +1,63 @@
+html {
+	scroll-behavior: smooth;
+	width: 100%;
+	height: 100%;
+	font-family: Montserrat;
+	user-select: none;
+	color: #202020;
+    box-sizing: border-box;
+}
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+    background-color: #eeeeee;
+    justify-content: center; /* Centre horizontalement */
+
+}
+.container {
+    display: grid;
+    place-items: center;
+    gap: 20px; /* Espacement entre les lignes */
+    margin: 0 auto; /* Centrage du conteneur */
+    width: 80%; /* Largeur du conteneur avec de l'espace sur les côtés */
+    max-width: 600px; /* Ajustez selon la largeur maximale désirée */
+}
+
+.image-row, .input-row {
+    width: 100%; /* Les enfants prennent toute la largeur du conteneur */
+    display: flex;
+    justify-content: center; /* Centre les éléments horizontalement */
+    align-items: center; /* Centre les éléments verticalement */
+    
+}
+
+.input-row {
+    justify-content: space-between; /* Répartit l'espace entre l'input et le bouton */
+}
+
+input[type="text"] {
+    width: 70%; /* Ajustez selon la largeur désirée pour l'input */
+
+}
+
+button {
+    width: 20%; /* Ajustez selon la largeur désirée pour le bouton */
+}
+
+.image-row img {
+    max-width: 100%; /* Empêche l'image de dépasser la largeur de son conteneur */
+    height: auto; /* Maintient le ratio d'aspect de l'image */
+    object-fit: contain; /* Assure que tout l'img est visible, ajustée à l'espace disponible */
+    border-radius: 10px;
+    border:2px solid black
+}
+.text-row {
+    display: flex;
+    justify-content: space-between; /* Répartit les enfants aux extrémités de la ligne */
+    width: 80%; /* Assurez-vous que cette largeur est cohérente avec les autres lignes pour l'alignement */
+    margin: 0 auto; /* Centrage de la ligne */
+}
+
+
