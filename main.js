@@ -19,7 +19,7 @@ function createWindow () {
     }
   })
 
-  win.loadFile('index.html')
+  win.loadFile('page/settings.html')
   // win.setMenuBarVisibility(false)
 }
 

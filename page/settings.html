@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='../assets/lineawsome-1.3.0/css/line-awesome.min.css'>
+    <link rel='stylesheet' href='../css/main.css'>
+    <link rel='stylesheet' href='../css/settings.css'>
+    <title>CineQuiz</title>
+</head>
+<body>
+    <div id="title">
+        <h1>Configuration de partie</h1>
+    </div>
+
+    <div id="config-section">
+        <div class="settings">
+            <p class="settings-title">Paramètres généraux</p>
+
+            <table class="setting" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="no-padding">
+                        <label class="radio-label">
+                            <input type="radio" name="player-mode" value="solo" checked required/>
+                            <div>Solo</div>
+                        </label>
+                    </td>
+                    <td class="no-padding">
+                        <label class="radio-label">
+                            <input type="radio" name="player-mode" value="multi1" required/>
+                            <div>MultiLocal</div>
+                        </label>
+                    </td>
+                    <td class="no-padding">
+                        <label class="radio-label">
+                            <input type="radio" name="player-mode" value="multi2" required/>
+                            <div>MultiOnline</div>
+                        </label>
+                    </td>
+                </tr>
+                <tr id="players-number-cell">
+                    <td class="no-padding" colspan="3"><input id="players-number" type="number" min="2" max="5" placeholder="Nombre de joueurs" onchange="adjustValue(this)"></td>
+                </tr>
+            </table>
+
+            <table class="setting" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="setting-name">Nombre de tours</td>
+                    <td class="no-padding number-select"><input id="turns-number" type="number" min="2" max="10" placeholder="Nombre de tours" required onchange="adjustValue(this)"></td>
+                </tr>
+            </table>
+
+            <table class="setting" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="setting-name">Temps par tour <p class="precisions">en secondes</p></td>
+                    <td class="no-padding number-select"><input id="turns-time" type="number" min="60" max="180" placeholder="Temps par tour" required onchange="adjustValue(this)"></td>
+                </tr>
+            </table>
+
+            <table class="setting" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="setting-name">Pénalités</td>
+                    <td class="no-padding radio-select">
+                        <label class="radio-label">
+                            <input type="radio" name="penalties-check" value="true" checked="checked" required/>
+                            <div>Avec</div>
+                        </label>
+                    </td>
+                    <td class="no-padding radio-select">
+                        <label class="radio-label">
+                            <input type="radio" name="penalties-check" value="false" required/>
+                            <div>Sans</div>
+                        </label>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="setting" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="setting-name">Genre</td>
+                    <td class="no-padding select">
+                        <select id="genre-select" name="genre-select" required>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="setting" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="setting-name">Type de quiz</td>
+                    <td class="no-padding select">
+                        <select id="type-select" name="type-select" required>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="settings">
+            <p class="settings-title">Joueurs</p>
+            <table class="setting players-list" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="no-padding" class="player-settings">
+                        <input type="text" name="player-name" placeholder="Joueur 1" maxlength="14" required/>
+                    </td>
+                    <td class="player-settings player-keystroke-cell">
+                        Cliquez pour définir la touche
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="no-padding" class="player-settings">
+                        <input type="text" name="player-name" placeholder="Joueur 2" maxlength="14" required/>
+                    </td>
+                    <td class="player-settings player-keystroke-cell">
+                        Cliquez pour définir la touche
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+
+    </div>
+
+    <footer>
+        <p id="update-message"></p>
+        <div id="footer-infos">
+            <p id="version">Version 0.0.1 - Mars 2024</p>
+            <p id="copyright">Copyright <script>document.write(new Date().getFullYear());</script> | TwinCells Studio</p>
+        </div>
+    </footer>
+    
+
+    <script src="../js/game.js"></script>
+</body>
+</html>
