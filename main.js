@@ -13,14 +13,14 @@ function createWindow () {
     height: 720,
     icon: __dirname + '/assets/images/logo.ico',
     webPreferences: {
-      devTools: false,
+      // devTools: false,
       preload: __dirname + '/js/preload.js',
       nodeIntegration: true
     }
   })
 
   win.loadFile('index.html')
-  win.setMenuBarVisibility(false)
+  // win.setMenuBarVisibility(false)
 }
 
 app.whenReady().then(() => {
@@ -41,12 +41,12 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 });
 
-app.on('browser-window-focus', function () {
-  globalShortcut.register("CommandOrControl+R", () => {});
-  globalShortcut.register("F5", () => {});
-});
+// app.on('browser-window-focus', function () {
+//   globalShortcut.register("CommandOrControl+R", () => {});
+//   globalShortcut.register("F5", () => {});
+// });
 
-app.on('browser-window-blur', function () {
-  globalShortcut.unregister('CommandOrControl+R');
-  globalShortcut.unregister('F5');
-});
+// app.on('browser-window-blur', function () {
+//   globalShortcut.unregister('CommandOrControl+R');
+//   globalShortcut.unregister('F5');
+// });
