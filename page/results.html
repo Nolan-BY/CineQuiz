@@ -19,17 +19,17 @@
     <div class="container">
         <!-- Barre de progression et score -->
         <div class="score-board">
-            <p id="points">Points: 0</p>
+            <p id="points"></p>
             <div class="progress-container-vertical">
-                <div class="progress-bar-vertical" id="progress-bar">
-                    <span id="player-name">Nom du Joueur</span>
+                <div id="progress-bar-vertical">
+                    <span id="player-name">Moi</span>
                 </div>
             </div>
         </div>
         <!-- Bouton bas de page -->
-        <div class="buttons">
-            <button onclick="goToMainMenu()">Menu Principal</button>
-            <button onclick="returnToSession()">Retour Session</button>
+        <div id="buttons">
+            <div id="return-menu" class="button" onclick="window.location.href = '../index.html';">Menu Principal</div>
+            <div id="return-session" class="button" onclick="window.location.href = '../page/settings.html';">Retour Session</div>
         </div>
     </div>
 
@@ -41,6 +41,8 @@
             <p id="copyright">Copyright <script>document.write(new Date().getFullYear());</script> | TwinCells Studio</p>
         </div>
     </footer>
+
+    <script src="../js/results.js"></script>
 
 </body>
 </html>

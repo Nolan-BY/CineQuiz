@@ -13,7 +13,7 @@
         <h1>Configuration de partie</h1>
     </div>
 
-    <form action="/elements/components/intelligence/contact-submit" method="post" class="form">
+    <form action="javascript:;" onsubmit="formSend(this)" class="form">
         <div id="config-section">
             <div class="settings">
                 <p class="settings-title">Paramètres généraux</p>
@@ -40,21 +40,21 @@
                         </td>
                     </tr>
                     <tr id="players-number-cell">
-                        <td class="no-padding" colspan="3"><input id="players-number" type="number" min="2" max="5" placeholder="Nombre de joueurs" onchange="adjustValue(this); populatePlayers(this);"></td>
+                        <td class="no-padding" colspan="3"><input id="players-number" type="number" min="2" max="5" placeholder="Nombre de joueurs" onkeydown="return event.keyCode !== 69" onchange="adjustValue(this); populatePlayers(this);"></td>
                     </tr>
                 </table>
 
                 <table class="setting" cellspacing="0" cellpadding="0">
                     <tr>
                         <td class="setting-name">Nombre de tours</td>
-                        <td class="no-padding number-select"><input id="turns-number" type="number" min="2" max="10" placeholder="Nombre de tours" required onchange="adjustValue(this)"></td>
+                        <td class="no-padding number-select"><input id="turns-number" type="number" min="2" max="10" placeholder="Nombre de tours" onkeydown="return event.keyCode !== 69" required onchange="adjustValue(this)"></td>
                     </tr>
                 </table>
 
                 <table class="setting" cellspacing="0" cellpadding="0">
                     <tr>
                         <td class="setting-name">Temps par tour <p class="precisions">en secondes</p></td>
-                        <td class="no-padding number-select"><input id="turns-time" type="number" min="60" max="180" placeholder="Temps par tour" required onchange="adjustValue(this)"></td>
+                        <td class="no-padding number-select"><input id="turns-time" type="number" min="20" max="180" placeholder="Temps par tour" onkeydown="return event.keyCode !== 69" required onchange="adjustValue(this)"></td>
                     </tr>
                 </table>
 
@@ -82,11 +82,11 @@
                         <td class="no-padding select">
                             <select id="genre-select" name="genre-select" required>
                                 <option value="" selected>- Choisir un genre -</option>
-                                <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
+                                <option value="28">Action</option>
+                                <option value="53">Thriller</option>
+                                <option value="12">Aventure</option>
+                                <option value="16">Animation</option>
+                                <option value="28|53|12|16">Tous</option>
                             </select>
                         </td>
                     </tr>
@@ -97,7 +97,7 @@
                         <td class="setting-name">Type de quiz</td>
                         <td class="no-padding select">
                             <select id="type-select" name="type-select" onchange="modeSelect(this)" required>
-                                <option value="SceneGuess">Scene Guess</option>
+                                <option value="ImageGuess">Image Guess</option>
                                 <option value="DialogueGuess">Dialogue Guess</option>
                                 <option value="MusicGuess">Music Guess</option>
                             </select>
@@ -145,6 +145,6 @@
     </footer>
     
 
-    <script src="../js/game.js"></script>
+    <script src="../js/settings.js"></script>
 </body>
 </html>

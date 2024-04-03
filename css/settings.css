@@ -141,25 +141,6 @@ input[name="player-name"] {
 }
 
 
-.button {
-    border-radius: 0.5rem;
-    box-shadow: 0.5rem 0.3rem 0.8rem -0.4rem rgb(128, 128, 128);
-    padding: 1rem;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: 600;
-    transition-duration: .2s;
-    height: fit-content;
-    min-width: 10rem;
-    text-align: center;
-    border: none;
-}
-
-.button:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-}
-
 #start-game {
     justify-self: center;
     margin-top: 2rem;
@@ -173,7 +154,6 @@ input[name="player-name"] {
 select {
     font-size: 1.1rem;
     font-weight: 500;
-
 }
 
 form {

@@ -1,176 +1,188 @@
 
 
 var gameMode = JSON.parse(localStorage.getItem('gameMode'));
+var playerMode = JSON.parse(localStorage.getItem('playerMode'));
+var playersNumber = JSON.parse(localStorage.getItem('playersNumber'));
+var turnsNumber = JSON.parse(localStorage.getItem('turnsNumber'));
+var timeByTurn = JSON.parse(localStorage.getItem('timeByTurn'));
+var penalties = JSON.parse(localStorage.getItem('penalties'));
+var genre = JSON.parse(localStorage.getItem('genre'));
 
 
-// -------------------------- Settings ----------------------------- \\
+var page;
+var movieNb;
 
-document.getElementById("type-select").querySelector(`option[value="${gameMode}"]`).selected = true;
+var movie;
+var movieTitle;
+var movieImg;
+var movieImgRand;
 
-function togglePlayerNumberCell(radio) {
-    const playersNumberCell = document.getElementById('players-number-cell');
-    if (radio.value === 'solo') {
-        playersNumberCell.style.display = 'none'; // Cacher l'option
-    } else {
-        playersNumberCell.style.display = 'table-row'; // Afficher l'option
+var maxPoints = localStorage.setItem('maxPoints', JSON.stringify(timeByTurn*turnsNumber));
+
+var points = (JSON.parse(localStorage.getItem('points')) != null ? JSON.parse(localStorage.getItem('points')) : 0);
+var turnNumber = (JSON.parse(localStorage.getItem('turnNumber')) != null ? JSON.parse(localStorage.getItem('turnNumber')) : 0)
+
+var timer = timeByTurn;
+
+
+const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNWY0M2IwYWM1YmIyNjcyNzAzMzk2ZDVmOGIzNjUzZSIsInN1YiI6IjY2MDViNGMxY2QyZjBmMDE3ZDk0MGZiNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oAko1_6hX5GvQxel6I2VepDOXHH_8PKo_X7aCNUXBAY'
     }
+  };
+
+
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
 }
 
+function gamePreload() {
+    page = randomNumber(1, 10);
+    movieNb = randomNumber(0, 19);
 
-function adjustValue(input) {
-    // Vérifier si la valeur saisie est inférieure à la valeur minimale
-    if (parseInt(input.value) < parseInt(input.min)) {
-        // Ajuster la valeur à la valeur minimale
-        input.value = input.min;
-    }
-    // Vérifier si la valeur saisie dépasse la valeur maximale
-    else if (parseInt(input.value) > parseInt(input.max)) {
-        // Ajuster la valeur à la valeur maximale
-        input.value = input.max;
-    }
+    fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&page=${page}&with_genres=${genre}`, options)
+        .then(response => response.json())
+        .then(response => movie = response["results"][movieNb])
+        .then(() => gameInit())
+        .catch(err => console.error(err));
 }
 
-
-function modeSelect(selector) {
-    gameMode = selector.selectedOptions[0].value;
-    localStorage.setItem('gameMode', JSON.stringify(gameMode));
-    console.log(gameMode);
-}
-
-
-function populatePlayers(numSelector) {
-    const numPlayers = numSelector.value;
-    for (let numPlayer = 1; numPlayer < numPlayers; numPlayer++) {
-        const playerSettings = document.createElement("tr");
-        const playerSettingsKey = document.createElement("td");
-
-        const playerSettingsName = document.createElement("td");
-        const playerSettingsName_Input = document.createElement("input");
-        playerSettingsName.classList.add("no-padding");
-        playerSettingsName_Input.type = "text";
-        playerSettingsName_Input.name = "player-name";
-        playerSettingsName_Input.placeholder = "Joueur " + (numPlayer+1);
-        playerSettingsName_Input.maxlength = "14"
-        playerSettingsName_Input.required = true;
-
-        playerSettingsName.appendChild(playerSettingsName_Input);
-
-        playerSettingsKey.classList.add("player-settings", "player-keystroke-cell");
-        playerSettingsKey.innerHTML = "Cliquez pour définir la touche";
-
-        playerSettings.appendChild(playerSettingsName);
-        playerSettings.appendChild(playerSettingsKey);
-
-        document.getElementsByClassName("players-list")[0].appendChild(playerSettings);
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    let keystrokes = {}; // Touches associées à chaque joueur
-    let playerColors = {};
-
-    document.querySelectorAll(".player-keystroke-cell").forEach(player_keystroke => {
-        // Écouteur d'événements de clic à chaque élément
-        player_keystroke.addEventListener("click", function() {
-            // Nom du joueur est renseigné ?
-            const playerNameInput = this.parentNode.querySelector('input[name="player-name"]');
-            const playerName = playerNameInput.value.trim();
-            if (!playerName) {
-                showErrorMessage(this, "Nom requis");
-                return;
-            } else {
-                this.classList.remove("error");
-                this.textContent = "Appuyez sur une touche...";
-            }
-
-            // Touche déjà utilisée par un autre joueur ?
-            const existingKeystroke = Object.values(keystrokes).find(keystroke => keystroke === event.key);
-            if (existingKeystroke && Object.keys(keystrokes).find(name => keystrokes[name] === event.key) !== playerName) {
-                showErrorMessage(this, "Touche déjà utilisée");
-                return;
-            } else {
-                this.classList.remove("error");
-            }
-
-            // En cours de sélection
-            this.classList.add("selecting-key");
-            // Nom du joueur requis
-            playerNameInput.disabled = true;
-            playerNameInput.placeholder = "Nom requis";
-
-            // Écoute événement pression de touche
-            document.addEventListener("keydown", keydownListener);
-        });
-    });
-
-    function keydownListener(event) {
-        const selectedKeystrokeCell = document.querySelector(".selecting-key");
-        if (selectedKeystrokeCell) {
-            const playerNameInput = selectedKeystrokeCell.parentNode.querySelector('input[name="player-name"]');
-            const playerName = playerNameInput.value.trim();
-            const keystroke = event.key;
-            
-            // Touche déjà utilisée par un autre joueur ?
-            const keystrokesValues = Object.values(keystrokes);
-            if (keystrokesValues.includes(keystroke)) {
-                const usedByPlayer = Object.keys(keystrokes).find(name => keystrokes[name] === keystroke);
-                if (usedByPlayer !== playerName) {
-                    showErrorMessage(selectedKeystrokeCell, "Touche déjà utilisée");
-                    return;
-                }
-            }
-            
-            // Update touche associée au joueur
-            keystrokes[playerName] = keystroke;
-            selectedKeystrokeCell.textContent = keystroke;
-            selectedKeystrokeCell.classList.remove("selecting-key");
-            // Réinitialiser styles
-            playerNameInput.disabled = true; // Désactiver champ nom du joueur
-            playerNameInput.placeholder = "";
-            // Générer une couleur aléatoire pour le joueur -- TO REMOVE
-            const playerColor = getRandomColor();
-            playerColors[playerName] = playerColor;
-            selectedKeystrokeCell.style.backgroundColor = playerColor;
-            document.removeEventListener("keydown", keydownListener);
-        }
-    }
+function gameInit() {
+    movieTitle = movie["original_title"];
+    movieId = movie["id"];
     
+    fetch(`https://api.themoviedb.org/3/movie/${movieId}/images?include_image_language=null`, options)
+        .then(response => response.json())
+        .then(response => movieImgs = response)
+        .then(() => contentFill())
+        .catch(err => console.error(err));
 
-    // Afficher message d'erreur
-    function showErrorMessage(element, message) {
-        element.textContent = message;
-        const playerKeystrokeInput = element.children;
-        playerKeystrokeInput.value = null;
-        element.classList.add("error");
+}
+
+function contentFill() {
+
+    console.log(movieTitle);
+    if (movieImgs["backdrops"].length == 0) {
+        if (movieImgs["posters"].length == 0) {
+            gamePreload();
+        }
+        movieImgRand = randomNumber(1, (movieImgs["posters"].length-1));
+        movieImg = movieImgs["posters"][movieImgRand]["file_path"];
+    } else {
+        movieImgRand = randomNumber(1, (movieImgs["backdrops"].length-1));
+        movieImg = movieImgs["backdrops"][movieImgRand]["file_path"];
+    }
+
+    document.getElementById("title").innerHTML = `<h1>${gameMode.slice(0, -5)} Guess</h1>`;
+
+    if (gameMode == "ImageGuess") {
+
+        const imageContainer = document.createElement("div");
+        const image = document.createElement("img");
+        imageContainer.id = "image-row";
+        image.id = "image";
+        image.src = `https://image.tmdb.org/t/p/original${movieImg}`;
+
+        imageContainer.appendChild(image);
+        document.getElementById("game-container").insertBefore(imageContainer, document.getElementById("input-row"));
+    } 
+    // else if (gameMode == "DialogueGuess") {
+        
+    // } else {
+
+    // }
+
+    gamePlay();
+}
+
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+    return `${formattedMinutes}:${formattedSeconds}`;
+}
+
+
+let timerGame;
+
+function validateAnswer() {
+    var guess = document.getElementById("input").value;
+    var answer = movieTitle.toLowerCase().replace('.', "").split(/(?::|-)+/)[0].split(" ");
+    console.log(answer);
+    console.log(guess.toLowerCase().trim().split(" "));
+    if (guess.toLowerCase().trim().split(" ").every(a => answer.includes(a))) {
+        points += timer;
+        document.getElementById("input").style.backgroundColor = "green";
         setTimeout(() => {
-            element.classList.remove("error");
-            element.textContent = "Cliquer pour définir la touche";
-        }, 1500);
-    }
-
-    // Générer couleur aléatoire -- TO REMOVE
-    function getRandomColor() {
-        const letters = "0123456789ABCDEF";
-        let color = "#";
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
+            document.getElementById("input").style.backgroundColor = "white";
+        }, 600);
+        gameEnd();
+    } else {
+        if(penalties == "true") {
+            points -= timer;
         }
-        return color;
+        document.getElementById("input").style.backgroundColor = "red";
+        document.getElementById("input").value = "";
+        setTimeout(() => {
+            document.getElementById("input").style.backgroundColor = "white";
+        }, 600);
     }
+}
 
-    // Écoute événements clavier sur le document
-    document.addEventListener("keydown", function(event) {
-        // Touche enregistrée pressée ?
-        const playerName = Object.keys(keystrokes).find(name => keystrokes[name] === event.key);
-        if (playerName) {
-            // Changez couleur de fond de page -- TO REMOVE
-            document.body.style.backgroundColor = playerColors[playerName];
+
+function gameEnd() {
+    clearInterval(timerGame);
+
+    document.getElementById("points").innerText = points;
+
+    document.getElementById("input").disabled = true;
+    document.getElementById("validate-input").style.pointerEvents = "none";
+
+    turnNumber+=1;
+
+    localStorage.setItem('points', JSON.stringify(points));
+    localStorage.setItem('turnNumber', JSON.stringify(turnNumber));
+
+    setTimeout(() => {
+        if (turnNumber == turnsNumber) {
+            window.location.href = './results.html';
+        } else {
+            window.location.reload();
         }
-    });
+    }, 3000);
+}
 
-    // Écoute événements clavier sur le document
-    document.addEventListener("keyup", function(event) {
-        // Rétablir couleur de fond
-        document.body.style.backgroundColor = "";
-    });
-});
+
+function gamePlay() {
+    var elapsedTime = 0;
+    var blurLevel = ((timeByTurn*200)/360);
+
+    timerGame = setInterval(() => {
+
+        elapsedTime+=1;
+
+        if (elapsedTime % 300 === 0) {
+            timer--;
+        }
+
+        document.getElementById("time").innerText = formatTime(timer);
+        document.getElementById("points").innerText = points;
+
+        if (gameMode == "ImageGuess") {
+            if (blurLevel > 0) {
+                blurLevel-=(((timeByTurn/60)/300)*(timer/60)*2);
+                // blurLevel -= Math.pow(((timeByTurn / 60) / 300), 1) * 5;
+            }
+            const filterValue = `blur(${blurLevel}px)`;
+            document.getElementById('image').style.filter = filterValue;
+        }
+
+        if (timer === 0) {
+            gameEnd();
+        }
+
+    }, 1);
+}

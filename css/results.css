@@ -3,7 +3,7 @@
 }
 
 .score-board {
-    margin-bottom: 20px;
+    margin-bottom: 5rem;
 }
 
 .progress-container-vertical {
@@ -17,7 +17,7 @@
     align-items: flex-end; /* Aligner la barre de progression vers le bas */
 }
 
-.progress-bar-vertical {
+#progress-bar-vertical {
     background-color: #4CAF50;
     width: 100%; /* Prend toute la largeur du conteneur */
     height: 0%; /* Valeur initiale - sera ajustée par JS */
@@ -26,6 +26,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition-duration: 2s;
+}
+
+
+#buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5rem;
 }
 
 #player-name {
@@ -34,8 +43,17 @@
     transform-origin: center;
 }
 
-.buttons button {
-    margin: 0 10px;
-    padding: 10px 20px;
+
+#return-menu {
+    min-width: 5rem;
+    background-color: rgb(201, 116, 46);
+    font-size: 1rem;
+    padding: 0.5rem;
 }
 
+#return-session {
+    min-width: 5rem;
+    background-color: rgb(160, 46, 201);
+    font-size: 1rem;
+    padding: 0.5rem;
+}

@@ -11,25 +11,21 @@
 <body>
 
     <!-- Titre de la page (1er bandeau) -->
-    <div id="title">
-        <h1>Pixel Guess : [MODE]</h1>
-    </div>
+    <div class="button" id="quit" onclick="window.location.href = '../page/settings.html';">Quitter</div>
+    <div id="title"></div>
     
     <!-- MILIEU DE PAGE -->
-    <div class="container">
+    <div id="game-container">
         <!-- Points et temps -->
-        <div class="text-row">
-            <span class="points">Points: [VAR]</span>
-            <span class="time">Temps: 0:00</span>
+        <div id="infos-row">
+            <span id="points"></span>
+            <span id="time"></span>
         </div>
-        <!-- Image pixelisée -->
-        <div class="image-row">
-            <img src="../assets/images/forest_gump.jpg" alt="Image descriptive">
-        </div>
+
         <!-- Réponse -->
-        <div class="input-row">
-            <input type="text" placeholder="Votre texte ici">
-            <button>Valider</button>
+        <div id="input-row">
+            <input id="input" type="text" onkeydown="if(event.key === 'Enter') {validateAnswer();}" placeholder="Réponse">
+            <div id="validate-input" class="button" onclick="validateAnswer()">Valider</div>
         </div>
     </div>
 
@@ -41,6 +37,11 @@
             <p id="copyright">Copyright <script>document.write(new Date().getFullYear());</script> | TwinCells Studio</p>
         </div>
     </footer>
+
+    <script src="../js/game.js" type="text/javascript"></script> 
+    <script>
+       gamePreload();
+    </script>
 
 </body>
 </html>

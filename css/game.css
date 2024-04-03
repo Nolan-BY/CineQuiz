@@ -1,22 +1,5 @@
-html {
-	scroll-behavior: smooth;
-	width: 100%;
-	height: 100%;
-	font-family: Montserrat;
-	user-select: none;
-	color: #202020;
-    box-sizing: border-box;
-}
-body {
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	height: 100%;
-    background-color: #eeeeee;
-    justify-content: center; /* Centre horizontalement */
 
-}
-.container {
+#game-container {
     display: grid;
     place-items: center;
     gap: 20px; /* Espacement entre les lignes */
@@ -25,7 +8,7 @@ body {
     max-width: 600px; /* Ajustez selon la largeur maximale désirée */
 }
 
-.image-row, .input-row {
+#image-row, #input-row {
     width: 100%; /* Les enfants prennent toute la largeur du conteneur */
     display: flex;
     justify-content: center; /* Centre les éléments horizontalement */
@@ -33,27 +16,48 @@ body {
     
 }
 
-.input-row {
+#input-row {
     justify-content: space-between; /* Répartit l'espace entre l'input et le bouton */
 }
 
-input[type="text"] {
-    width: 70%; /* Ajustez selon la largeur désirée pour l'input */
-
+#input {
+    width: 75%; /* Ajustez selon la largeur désirée pour l'input */
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    font-size: 1rem;
 }
+
+#input::placeholder {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+
 
 button {
     width: 20%; /* Ajustez selon la largeur désirée pour le bouton */
 }
 
-.image-row img {
+
+#image-row img {
     max-width: 100%; /* Empêche l'image de dépasser la largeur de son conteneur */
-    height: auto; /* Maintient le ratio d'aspect de l'image */
+    height: fit-content; /* Maintient le ratio d'aspect de l'image */
+    max-height: 30rem;
     object-fit: contain; /* Assure que tout l'img est visible, ajustée à l'espace disponible */
-    border-radius: 10px;
-    border:2px solid black
+    transition-duration: 0.2s;
 }
-.text-row {
+
+#image-row {
+    overflow: hidden;
+    max-width: 30rem;
+    max-height: 20rem;
+    border:2px solid black;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.5);
+    border-radius: 10px;
+}
+
+#infos-row {
     display: flex;
     justify-content: space-between; /* Répartit les enfants aux extrémités de la ligne */
     width: 80%; /* Assurez-vous que cette largeur est cohérente avec les autres lignes pour l'alignement */
@@ -61,3 +65,19 @@ button {
 }
 
 
+#validate-input {
+    min-width: 5rem;
+    background-color: rgb(35, 150, 18);
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+
+#quit {
+    padding: 0.5rem 0;
+    margin: 1rem;
+    background-color: rgb(227, 143, 69);
+    font-size: 1rem;
+    max-width: 6rem;
+    min-width: 6rem;
+}
