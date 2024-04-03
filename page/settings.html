@@ -9,9 +9,8 @@
     <title>CineQuiz</title>
 </head>
 <body>
-    <div id="title">
-        <h1>Configuration de partie</h1>
-    </div>
+    <div class="button" id="quit" onclick="window.location.href = '../index.html';">Quitter</div>
+    <div id="title">Configuration de partie</div>
 
     <form action="javascript:;" onsubmit="formSend(this)" class="form">
         <div id="config-section">
@@ -47,14 +46,14 @@
                 <table class="setting" cellspacing="0" cellpadding="0">
                     <tr>
                         <td class="setting-name">Nombre de tours</td>
-                        <td class="no-padding number-select"><input id="turns-number" type="number" min="2" max="10" placeholder="Nombre de tours" onkeydown="return event.keyCode !== 69" required onchange="adjustValue(this)"></td>
+                        <td class="no-padding number-select"><input id="turns-number" type="number" min="2" max="10" placeholder="Nombre de tours (2 - 10)" onkeydown="return event.keyCode !== 69" required onchange="adjustValue(this)"></td>
                     </tr>
                 </table>
 
                 <table class="setting" cellspacing="0" cellpadding="0">
                     <tr>
                         <td class="setting-name">Temps par tour <p class="precisions">en secondes</p></td>
-                        <td class="no-padding number-select"><input id="turns-time" type="number" min="20" max="180" placeholder="Temps par tour" onkeydown="return event.keyCode !== 69" required onchange="adjustValue(this)"></td>
+                        <td class="no-padding number-select"><input id="turns-time" type="number" min="10" max="60" placeholder="Temps par tour (10 - 60)" onkeydown="return event.keyCode !== 69" required onchange="adjustValue(this)"></td>
                     </tr>
                 </table>
 
@@ -96,7 +95,7 @@
                     <tr>
                         <td class="setting-name">Type de quiz</td>
                         <td class="no-padding select">
-                            <select id="type-select" name="type-select" onchange="modeSelect(this)" required>
+                            <select id="type-select" diabled name="type-select" onchange="modeSelect(this)" required>
                                 <option value="ImageGuess">Image Guess</option>
                                 <option value="DialogueGuess">Dialogue Guess</option>
                                 <option value="MusicGuess">Music Guess</option>
@@ -139,7 +138,7 @@
     <footer>
         <p id="update-message"></p>
         <div id="footer-infos">
-            <p id="version">Version 0.0.1 - Mars 2024</p>
+            <p id="version">Version 0.0.2 - Avril 2024</p>
             <p id="copyright">Copyright <script>document.write(new Date().getFullYear());</script> | TwinCells Studio</p>
         </div>
     </footer>

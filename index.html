@@ -10,23 +10,22 @@
 </head>
 <body>
     <!-- Titre de la page (1er bandeau) -->
-    <div id="title">
-        <h1>Bienvenue sur CineQuiz !</h1>
+    <div id="title">Bienvenue sur CineQuiz !
         <p>Le jeu de test de connaissances cinématographiques</p>
     </div>
 
     <!-- 3 Box Layout (2nd bandeau)-->
 
     <div class="grid-layout">
-        <div class="grid-item" onclick="modeSelect('SceneGuess')">
-            <p>Scene Guess</p>
-            <img src="assets/images/forest_gump.jpg" alt="Scene Guess">
+        <div class="game-mode-button" onclick="modeSelect('ImageGuess')">
+            <p>Image Guess</p>
+            <img src="assets/images/forest_gump.jpg" alt="Image Guess">
         </div>
-        <div class="grid-item" onclick="modeSelect('DialogueGuess')">
+        <div class="game-mode-button" disabled onclick="">
             <p>Dialogue Guess</p>
             <img src="assets/images/TAXI_driver.jpg" alt="Dialogue Guess">
         </div>
-        <div class="grid-item" onclick="modeSelect('MusicGuess')">
+        <div class="game-mode-button" disabled onclick="">
             <p>Music Guess</p>
             <img src="assets/images/beatles.jpg" alt="Music Guess">
         </div>
@@ -37,7 +36,7 @@
     <footer>
         <p id="update-message"></p>
         <div id="footer-infos">
-            <p id="version">Version 0.0.1 - Mars 2024</p>
+            <p id="version">Version 0.0.2 - Avril 2024</p>
             <p id="copyright">Copyright <script>document.write(new Date().getFullYear());</script> | TwinCells Studio</p>
         </div>
     </footer>

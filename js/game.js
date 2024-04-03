@@ -20,7 +20,7 @@ var movieImgRand;
 var maxPoints = localStorage.setItem('maxPoints', JSON.stringify(timeByTurn*turnsNumber));
 
 var points = (JSON.parse(localStorage.getItem('points')) != null ? JSON.parse(localStorage.getItem('points')) : 0);
-var turnNumber = (JSON.parse(localStorage.getItem('turnNumber')) != null ? JSON.parse(localStorage.getItem('turnNumber')) : 0)
+var turnNumber = (JSON.parse(localStorage.getItem('turnNumber')) != null ? JSON.parse(localStorage.getItem('turnNumber')) : 1)
 
 var timer = timeByTurn;
 
@@ -63,7 +63,8 @@ function gameInit() {
 
 function contentFill() {
 
-    console.log(movieTitle);
+    document.getElementById("turn").innerText = `Tour : ${turnNumber}/${turnsNumber}`;
+
     if (movieImgs["backdrops"].length == 0) {
         if (movieImgs["posters"].length == 0) {
             gamePreload();
@@ -81,12 +82,15 @@ function contentFill() {
 
         const imageContainer = document.createElement("div");
         const image = document.createElement("img");
+        const movieAnswer = document.createElement("div");
+        movieAnswer.id = "movie-answer";
         imageContainer.id = "image-row";
         image.id = "image";
         image.src = `https://image.tmdb.org/t/p/original${movieImg}`;
 
         imageContainer.appendChild(image);
         document.getElementById("game-container").insertBefore(imageContainer, document.getElementById("input-row"));
+        document.getElementById("game-container").insertBefore(movieAnswer, document.getElementById("input-row"))
     } 
     // else if (gameMode == "DialogueGuess") {
         
@@ -115,7 +119,7 @@ function validateAnswer() {
     console.log(guess.toLowerCase().trim().split(" "));
     if (guess.toLowerCase().trim().split(" ").every(a => answer.includes(a))) {
         points += timer;
-        document.getElementById("input").style.backgroundColor = "green";
+        document.getElementById("input").style.backgroundColor = "rgb(110, 197, 69)";
         setTimeout(() => {
             document.getElementById("input").style.backgroundColor = "white";
         }, 600);
@@ -124,7 +128,7 @@ function validateAnswer() {
         if(penalties == "true") {
             points -= timer;
         }
-        document.getElementById("input").style.backgroundColor = "red";
+        document.getElementById("input").style.backgroundColor = "rgb(255, 130, 130)";
         document.getElementById("input").value = "";
         setTimeout(() => {
             document.getElementById("input").style.backgroundColor = "white";
@@ -136,20 +140,23 @@ function validateAnswer() {
 function gameEnd() {
     clearInterval(timerGame);
 
-    document.getElementById("points").innerText = points;
+    document.getElementById("points").innerText = `Points : ${points}`;
 
     document.getElementById("input").disabled = true;
     document.getElementById("validate-input").style.pointerEvents = "none";
 
-    turnNumber+=1;
-
     localStorage.setItem('points', JSON.stringify(points));
-    localStorage.setItem('turnNumber', JSON.stringify(turnNumber));
+
+    document.getElementById("movie-answer").innerHTML = `<u>Réponse : </u> ${movieTitle}`;
 
     setTimeout(() => {
         if (turnNumber == turnsNumber) {
+            turnNumber+=1;
+            localStorage.setItem('turnNumber', JSON.stringify(turnNumber));
             window.location.href = './results.html';
         } else {
+            turnNumber+=1;
+            localStorage.setItem('turnNumber', JSON.stringify(turnNumber));
             window.location.reload();
         }
     }, 3000);
@@ -158,7 +165,7 @@ function gameEnd() {
 
 function gamePlay() {
     var elapsedTime = 0;
-    var blurLevel = ((timeByTurn*200)/360);
+    var blurLevel = timeByTurn;
 
     timerGame = setInterval(() => {
 
@@ -169,12 +176,11 @@ function gamePlay() {
         }
 
         document.getElementById("time").innerText = formatTime(timer);
-        document.getElementById("points").innerText = points;
+        document.getElementById("points").innerText = `Points : ${points}`;
 
         if (gameMode == "ImageGuess") {
             if (blurLevel > 0) {
-                blurLevel-=(((timeByTurn/60)/300)*(timer/60)*2);
-                // blurLevel -= Math.pow(((timeByTurn / 60) / 300), 1) * 5;
+                blurLevel-=((timer/(timeByTurn/2))/300);
             }
             const filterValue = `blur(${blurLevel}px)`;
             document.getElementById('image').style.filter = filterValue;

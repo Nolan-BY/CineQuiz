@@ -56,11 +56,6 @@ table {
     padding: 0 !important;
 }
 
-input:focus,
-select:focus {
-    outline: none;
-}
-
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -125,9 +120,16 @@ input[name="player-name"] {
 }
 
 .radio-label > input:disabled + div {
-    background-color: #f0f0f0; /* Couleur de fond lorsque désactivé */
-    color: #999; /* Couleur de texte lorsque désactivé */
-    cursor: not-allowed; /* Curseur non autorisé */
+    background-color: #f0f0f0;
+    color: #999;
+    cursor: not-allowed;
+}
+
+select[diabled] {
+    pointer-events: none;
+    background-color: #f0f0f0;
+    color: #999;
+    cursor: not-allowed;
 }
 
 .player-settings {
@@ -158,4 +160,14 @@ select {
 
 form {
     display: grid;
+}
+
+
+#quit {
+    padding: 0.5rem 0;
+    margin: 1rem;
+    background-color: rgb(227, 143, 69);
+    font-size: 1rem;
+    max-width: 6rem;
+    min-width: 6rem;
 }

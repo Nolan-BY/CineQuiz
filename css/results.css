@@ -57,3 +57,8 @@
     font-size: 1rem;
     padding: 0.5rem;
 }
+
+#points {
+    font-weight: 600;
+    font-size: 1.3rem;
+}

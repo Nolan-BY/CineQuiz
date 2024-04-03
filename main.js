@@ -14,7 +14,7 @@ function createWindow () {
     icon: __dirname + '/assets/images/logo.ico',
     webPreferences: {
       // devTools: false,
-      preload: __dirname + '/js/preload.js',
+      // preload: __dirname + '/js/preload.js',
       nodeIntegration: true
     }
   })

@@ -9,7 +9,7 @@
     max-width: 1200px; /* Ajustez selon la largeur maximale désirée pour votre layout */
 }
 
-.grid-item {
+.game-mode-button {
     border: 1px solid black; /* Pour visualiser les boîtes */
     border-radius: 1rem;
     /* Styles pour les images ou le contenu ici, par exemple : */
@@ -22,7 +22,7 @@
     transition-duration: .2s;
 }
 
-.grid-item::after {
+.game-mode-button::after {
     content: '';
     position: absolute;
     top: 0;
@@ -34,13 +34,13 @@
     pointer-events: none; /* Empêche l'élément de capter des événements de souris */
 }
 
-.grid-item img {
+.game-mode-button img {
     width: 100%; /* Assure que l'image prend toute la largeur de .grid-item */
     height: 100%; /* Assure que l'image prend toute la hauteur de .grid-item */
     object-fit: cover; /* Couvre l'espace disponible sans perdre de proportions, si vous voulez que l'image remplisse tout l'espace */
 }
 
-.grid-item p {
+.game-mode-button p {
     position: absolute;
     top: 0;
     left: 0;
@@ -53,7 +53,14 @@
     text-shadow: 0px 1px 3px rgba(0,0,0,0.7); /* Ajoute une ombre pour améliorer la lisibilité sur des images variées */
 }
 
-.grid-item:hover {
+.game-mode-button:hover {
     transform: scale(1.02);
     cursor: pointer;
+}
+
+.game-mode-button[disabled], .game-mode-button[disabled]:hover {
+    pointer-events: all;
+    cursor: not-allowed;
+    filter: grayscale(1);
+    transform: scale(1);
 }

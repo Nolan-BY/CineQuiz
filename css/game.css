@@ -26,6 +26,7 @@
     border-radius: 0.5rem;
     font-weight: 700;
     font-size: 1rem;
+    
 }
 
 #input::placeholder {
@@ -45,7 +46,6 @@ button {
     height: fit-content; /* Maintient le ratio d'aspect de l'image */
     max-height: 30rem;
     object-fit: contain; /* Assure que tout l'img est visible, ajustée à l'espace disponible */
-    transition-duration: 0.2s;
 }
 
 #image-row {
@@ -72,6 +72,10 @@ button {
     padding: 0.5rem;
 }
 
+#validate-input::placeholder {
+    background-color: rgb(31, 31, 31) !important;
+}
+
 
 #quit {
     padding: 0.5rem 0;
@@ -80,4 +84,24 @@ button {
     font-size: 1rem;
     max-width: 6rem;
     min-width: 6rem;
+}
+
+#movie-answer {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+#points {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+#turn {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+#time {
+    font-weight: 600;
+    font-size: 1.1rem;
 }
