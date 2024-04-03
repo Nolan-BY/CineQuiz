@@ -1,6 +1,6 @@
 {
   "name": "cinequiz",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Guess game based on movies images/dialogues/sounds",
   "main": "main.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "url": "https://github.com/Nolan-BY/CineQuiz/issues"
   },
   "homepage": "https://github.com/Nolan-BY/CineQuiz#readme",
-  "dependencies": {
+  "devDependencies": {
     "electron": "^29.1.5",
     "electron-builder": "^24.12.0"
   },
