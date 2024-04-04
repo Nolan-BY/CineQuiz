@@ -1,5 +1,6 @@
 {
   "name": "cinequiz",
+  "productName": "CineQuiz",
   "version": "0.0.2",
   "description": "Guess game based on movies images/dialogues/sounds",
   "main": "main.js",
